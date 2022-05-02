@@ -1,10 +1,14 @@
 import React from "react";
+import Logo from "../../../logo/Logo";
 import NavigationItems from "../shared/navigationItems/NavigationItems";
 
 const Navbar = () => {
     return (
-        <nav>
-            <NavigationItems />
+        <nav className="bg-gray-800 py-3">
+            <div className="container mx-auto px-4 flex justify-between items-center">
+                <Logo size="30px" />
+                <NavigationItems />
+            </div>
         </nav>
     );
 };

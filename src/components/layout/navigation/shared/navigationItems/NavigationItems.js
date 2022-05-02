@@ -1,14 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavigationItem from './navigationItem/NavigationItem';
 
 const NavigationItems = () => {
     return (
-        <ul>
-            <li>
-                <Link to={'/'}>Home</Link>
+        <ul className='flex items-center text-stone-400 font-semibold'>
+            <li className='ml-3'>
+                <NavigationItem to={'/'}>Home</NavigationItem>
             </li>
-            <li>
-                <Link to={'/about'}>About</Link>
+            <li className='ml-3'>
+                <NavigationItem to={'/blogs'}>Blogs</NavigationItem>
+            </li>
+            <li className='ml-3'>
+                <NavigationItem to={'/about'}>About</NavigationItem>
+            </li>
+            <li className='ml-3'>
+                <NavigationItem to={'/login'}>Login</NavigationItem>
             </li>
         </ul>
     );
