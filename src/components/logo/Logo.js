@@ -5,7 +5,7 @@ const Logo = ({ size }) => {
     return (
         <h1 className="tracking-tight text-stone-400" style={{ fontSize: size }}>
             <Link to={"/"}>
-                <span className="">Grocery Warehouse</span>
+                <span className="">NT Grocery Stock™</span>
             </Link>
         </h1>
         
