@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../../../firebase/firebase.init";
+import SocialAuth from "../social/SocialAuth";
 
 const Login = () => {
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
+
     const onSubmit = (data) => {
-        console.log(data);
+        const { email, password } = data;
+        console.log(email);
+        console.log(password);
+        signInWithEmailAndPassword(email, password);
     };
 
     return (
-        <div className="bg-gray-700 py-20">
+        <div className="bg-gray-900 py-8">
             <div className="shadow rounded-xl w-1/2 mx-auto bg-gradient-to-r  p-2 sm:p-10 bg-gray-800">
                 <h3 className="text-stone-400 text-2xl tex mb-8">Login Form</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +63,9 @@ const Login = () => {
                             name="floating_password"
                             id="floating_password"
                             type="password"
-                            {...register("password", { required: "Password* is mandatory" })}
+                            {...register("password", {
+                                required: "Password* is mandatory",
+                            })}
                             placeholder=" "
                         />
                         <label
@@ -56,13 +76,13 @@ const Login = () => {
                         </label>
                         {errors.password && (
                             <p className="mt-2 text-sm text-red-500">
-                                 <span className="font-medium">
+                                <span className="font-medium">
                                     {errors.password?.message}
                                 </span>
                             </p>
                         )}
                     </div>
-                    <div className="flex items-start mb-6">
+                    <div className="flex items-start mb-4">
                         <div className="flex items-center h-5">
                             <input
                                 id="remember"
@@ -78,17 +98,34 @@ const Login = () => {
                             Remember me
                         </label>
                     </div>
+                    {error && (
+                        <p className="mb-3 text-sm text-red-500">
+                            <span className="font-medium">Error: {error?.code}</span>
+                        </p>
+                    )}
                     <button
                         type="submit"
-                        className="py-2.5 px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
+                        className="mt-2 py-2.5 px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
                     >
                         Login
                     </button>
                     <p className="my-2 text-sm text-gray-400">
+                        Forgot your account ?
+                        <Link
+                            className="px-2 font-medium text-blue-500"
+                            to={"/reset-password"}
+                        >
+                            Reset password
+                        </Link>
+                    </p>
+                    <p className="my-2 text-sm text-gray-400">
                         New to nt grocery stock ?
-                        <Link className="px-2 font-medium text-blue-500" to={'/sign-up'}>create an account</Link>
+                        <Link className="px-2 font-medium text-blue-500" to={"/sign-up"}>
+                            Create an account
+                        </Link>
                     </p>
                 </form>
+                <SocialAuth />
             </div>
         </div>
     );

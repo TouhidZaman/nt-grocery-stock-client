@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../../../firebase/firebase.init";
+import SocialAuth from "../social/SocialAuth";
 
 const SignUp = () => {
+    //to create new user
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    //to update user info
+    const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
+
+    const onSubmit = async (data) => {
+        const { name, email, password } = data;
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
     };
 
     return (
-        <div className="bg-gray-700 py-12">
+        <div className="bg-gray-900 py-8">
             <div className="shadow rounded-xl w-1/2 mx-auto bg-gradient-to-r  p-2 sm:p-10 bg-gray-800">
                 <h3 className="text-stone-400 text-2xl tex mb-8">Sign Up Form</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +92,7 @@ const SignUp = () => {
                             id="floating_password"
                             type="password"
                             {...register("password", {
-                                required: "Password* is mandatory"
+                                required: "Password* is mandatory",
                             })}
                             placeholder=" "
                         />
@@ -87,7 +110,7 @@ const SignUp = () => {
                             </p>
                         )}
                     </div>
-                    <div className="flex items-start mb-6">
+                    <div className="flex items-start mb-4">
                         <div className="flex items-center h-5">
                             <input
                                 id="remember"
@@ -103,9 +126,14 @@ const SignUp = () => {
                             Accept terms and conditions ?
                         </label>
                     </div>
+                    {error && (
+                        <p className="my-2 text-sm text-red-500">
+                            <span className="font-medium">Error: {error?.code}</span>
+                        </p>
+                    )}
                     <button
                         type="submit"
-                        className="py-2.5 px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
+                        className="mt-2 py-2.5 px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
                     >
                         Sign Up
                     </button>
@@ -116,6 +144,7 @@ const SignUp = () => {
                         </Link>
                     </p>
                 </form>
+                <SocialAuth />
             </div>
         </div>
     );
