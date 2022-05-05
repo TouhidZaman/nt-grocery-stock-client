@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./components/layout/pages/about/About";
+import AddInventory from "./components/layout/pages/add-inventory/AddInventory";
 import Login from "./components/layout/pages/auth/login/Login";
 import ResetPassword from "./components/layout/pages/auth/reset-password/ResetPassword";
 import SignUp from "./components/layout/pages/auth/sign-up/SignUp";
@@ -23,6 +24,14 @@ const MyRoutes = () => {
                 element={
                     <RequireAuth>
                         <Inventory />
+                    </RequireAuth>
+                }
+            />
+            <Route
+                path="/add-inventory"
+                element={
+                    <RequireAuth>
+                        <AddInventory />
                     </RequireAuth>
                 }
             />
