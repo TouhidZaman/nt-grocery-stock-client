@@ -5,6 +5,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../../../firebase/firebase.init";
 import SocialAuth from "../social/SocialAuth";
 
@@ -33,6 +34,7 @@ const SignUp = () => {
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+        toast("A verification email has sent!");
     };
 
     return (

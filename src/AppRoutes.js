@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./components/layout/pages/about/About";
 import Login from "./components/layout/pages/auth/login/Login";
+import ResetPassword from "./components/layout/pages/auth/reset-password/ResetPassword";
 import SignUp from "./components/layout/pages/auth/sign-up/SignUp";
 import Blogs from "./components/layout/pages/blogs/Blogs";
 import Home from "./components/layout/pages/home/Home";
@@ -15,6 +16,7 @@ const MyRoutes = () => {
             <Route path="/about" element={<About />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route
                 path="/inventory/:id"
