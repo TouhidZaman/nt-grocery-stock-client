@@ -7,7 +7,9 @@ const Navbar = () => {
         <nav className="bg-gray-800 py-3">
             <div className="container mx-auto px-4 flex justify-between items-center">
                 <Logo size="30px" />
-                <NavigationItems />
+                <div className="hidden sm:block">
+                    <NavigationItems />
+                </div>
             </div>
         </nav>
     );

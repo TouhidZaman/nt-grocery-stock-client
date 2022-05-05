@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../../../firebase/firebase.init";
+import Spinner from "../../../../ui/spinner/Spinner";
 import SocialAuth from "../social/SocialAuth";
 
 const Login = () => {
@@ -15,25 +16,33 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
+    
+    //dynamic user navigation area
     const navigate = useNavigate();
-
+    const location = useLocation(); //to redirect back to previous location
+    const from = location.state?.from?.pathname || "/";
+    
+    //navigating user
     useEffect(() => {
         if (user) {
-            navigate("/");
+            navigate(from, {replace: true});
         }
-    }, [user, navigate]);
-
+    }, [user, navigate, from]);
+    
+    // if(loading) {
+    //     return <Spinner />
+    // }
     const onSubmit = (data) => {
         const { email, password } = data;
-        console.log(email);
-        console.log(password);
         signInWithEmailAndPassword(email, password);
     };
 
     return (
         <div className="bg-gray-900 py-8">
-            <div className="shadow rounded-xl w-1/2 mx-auto bg-gradient-to-r  p-2 sm:p-10 bg-gray-800">
-                <h3 className="text-stone-400 text-2xl tex mb-8">Login Form</h3>
+            <div className="shadow rounded-xl w-5/6 md:w-2/3 lg:w-2/5 mx-auto bg-gradient-to-r  p-6 sm:p-10 bg-gray-800">
+                <h3 className="text-stone-400 text-2xl text-center sm:text-left tex mb-8">
+                    Login Form
+                </h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="relative z-0 w-full mb-6 group">
                         <input
@@ -93,23 +102,30 @@ const Login = () => {
                         </div>
                         <label
                             htmlFor="remember"
-                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            className="ml-2 text-sm font-medium text-gray-300"
                         >
                             Remember me
                         </label>
                     </div>
+                    {loading && (
+                        <p className="mb-3 text-sm text-gray-500">
+                            <span className="font-medium">Please wait ...</span>
+                        </p>
+                    )}
                     {error && (
                         <p className="mb-3 text-sm text-red-500">
                             <span className="font-medium">Error: {error?.code}</span>
                         </p>
                     )}
-                    <button
-                        type="submit"
-                        className="mt-2 py-2.5 px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
-                    >
-                        Login
-                    </button>
-                    <p className="my-2 text-sm text-gray-400">
+                    <div className="text-center sm:text-left">
+                        <button
+                            type="submit"
+                            className="mt-2 py-2.5 px-14 sm:px-10 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-full border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 hover:bg-gray-700 text-gray-400 border-gray-600 hover:text-white"
+                        >
+                            Login
+                        </button>
+                    </div>
+                    <p className="text-center sm:text-left my-2 text-sm text-gray-400">
                         Forgot your account ?
                         <Link
                             className="px-2 font-medium text-blue-500"
@@ -118,7 +134,7 @@ const Login = () => {
                             Reset password
                         </Link>
                     </p>
-                    <p className="my-2 text-sm text-gray-400">
+                    <p className="text-center sm:text-left my-2 text-sm text-gray-400">
                         New to nt grocery stock ?
                         <Link className="px-2 font-medium text-blue-500" to={"/sign-up"}>
                             Create an account
