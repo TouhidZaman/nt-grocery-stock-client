@@ -21,17 +21,13 @@ const NavigationItems = () => {
                         <NavigationItem to={"/add-inventory"}>Add Item</NavigationItem>
                     </li>
                     <li className="ml-4">
-                        <NavigationItem to={"/my-inventory"}>My Items</NavigationItem>
+                        <NavigationItem to={"/my-items"}>My Items</NavigationItem>
                     </li>
                 </>
             )}
             <li className="ml-4">
                 <NavigationItem to={"/blogs"}>Blogs</NavigationItem>
             </li>
-            <li className="ml-4">
-                <NavigationItem to={"/about"}>About</NavigationItem>
-            </li>
-
             <li className="ml-4">
                 {user ? (
                     <Link onClick={() => signOut(auth)} to={"/login"}>

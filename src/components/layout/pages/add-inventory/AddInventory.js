@@ -29,7 +29,7 @@ const AddInventory = () => {
 
         try {
             await axios
-                .post("http://localhost:5000/inventoryItem", newInventoryItem)
+                .post("http://localhost:5000/inventory-item", newInventoryItem)
                 .then((response) => {
                     // console.log(response.data);
                     setLoading(false);
