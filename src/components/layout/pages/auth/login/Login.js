@@ -3,7 +3,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../../../firebase/firebase.init";
-// import Spinner from "../../../../ui/spinner/Spinner";
+import Loading from "../../../../ui/loading/Loading";
 import SocialAuth from "../social/SocialAuth";
 
 const Login = () => {
@@ -29,9 +29,9 @@ const Login = () => {
         }
     }, [user, navigate, from]);
     
-    // if(loading) {
-    //     return <Spinner />
-    // }
+    if(loading) {
+        return <Loading />
+    }
     const onSubmit = (data) => {
         const { email, password } = data;
         signInWithEmailAndPassword(email, password);
@@ -107,11 +107,11 @@ const Login = () => {
                             Remember me
                         </label>
                     </div>
-                    {loading && (
+                    {/* {loading && (
                         <p className="mb-3 text-sm text-gray-500">
                             <span className="font-medium">Please wait ...</span>
                         </p>
-                    )}
+                    )} */}
                     {error && (
                         <p className="mb-3 text-sm text-red-500">
                             <span className="font-medium">Error: {error?.code}</span>

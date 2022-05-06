@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import auth from "../../../../firebase/firebase.init";
+// import Loading from "../../../ui/loading/Loading";
 
 const AddInventory = () => {
     const [user] = useAuthState(auth);
@@ -51,6 +52,10 @@ const AddInventory = () => {
         });
     }, []);
 
+    // if (loading) {
+    //     return <Loading />;
+    // }
+
     return (
         <div className="bg-gray-900 py-8">
             <div className="shadow rounded-xl w-5/6 md:w-2/3 lg:w-2/5 mx-auto bg-gradient-to-r  p-6 sm:p-10 bg-gray-800">
@@ -90,16 +95,14 @@ const AddInventory = () => {
                                     required: "Select a category",
                                 })}
                             >
-                                <option value=''>
-                                    Choose a category
-                                </option>
+                                <option value="">Choose a category</option>
                                 {categories.map((category) => (
                                     <option key={category._id} value={category.name}>
                                         {category.name}
                                     </option>
                                 ))}
                             </select>
-                            
+
                             {errors.category && (
                                 <p className="mt-2 text-sm text-red-500">
                                     <span className="font-medium">

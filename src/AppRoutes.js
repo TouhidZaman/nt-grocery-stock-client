@@ -8,6 +8,7 @@ import SignUp from "./components/layout/pages/auth/sign-up/SignUp";
 import Blogs from "./components/layout/pages/blogs/Blogs";
 import Home from "./components/layout/pages/home/Home";
 import Inventory from "./components/layout/pages/inventory/Inventory";
+import NotFound from "./components/layout/pages/not-found/NotFound";
 import RequireAuth from "./components/layout/require-auth/RequireAuth";
 
 const MyRoutes = () => {
@@ -35,7 +36,7 @@ const MyRoutes = () => {
                     </RequireAuth>
                 }
             />
-            <Route path="*" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

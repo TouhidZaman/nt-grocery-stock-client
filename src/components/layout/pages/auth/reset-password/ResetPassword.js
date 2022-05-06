@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../../../../firebase/firebase.init";
 import { toast } from 'react-toastify';
+import Loading from "../../../../ui/loading/Loading";
 
 const ResetPassword = () => {
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
@@ -13,6 +14,10 @@ const ResetPassword = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    if(sending) {
+        return <Loading />
+    }
 
     const onSubmit = async (data) => {
         const { email } = data;
@@ -50,11 +55,11 @@ const ResetPassword = () => {
                         )}
                     </div>
 
-                    {sending && (
+                    {/* {sending && (
                         <p className="mb-3 text-sm text-gray-500">
                             <span className="font-medium">Sending Please wait ...</span>
                         </p>
-                    )}
+                    )} */}
                     {error && (
                         <p className="mb-3 text-sm text-red-500">
                             <span className="font-medium">Error: {error?.code}</span>

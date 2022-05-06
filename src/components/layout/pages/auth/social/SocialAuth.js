@@ -4,6 +4,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import auth from "../../../../../firebase/firebase.init";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
+import Spinner from "../../../../ui/spinner/Spinner";
 
 const SocialAuth = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -21,6 +22,10 @@ const SocialAuth = () => {
         }
     }, [user, navigate, from]);
 
+    if (loading) {
+        return <Spinner height="100px"/>;
+    }
+
     return (
         <div className="text-center sm:text-left">
             <h3 className="text-stone-400 text-xl tex my-4">Or using social accounts</h3>
@@ -32,11 +37,11 @@ const SocialAuth = () => {
                 <FontAwesomeIcon className="text-lg pr-2" icon={faGoogle} />
                 Sign in with Google
             </button>
-            {loading && (
+            {/* {loading && (
                 <p className="mt-2 text-sm text-gray-500">
                     <span className="font-medium">Please wait ...</span>
                 </p>
-            )}
+            )} */}
             {error && (
                 <p className="mt-2 text-sm text-red-500">
                     <span className="font-medium">Error: {error?.code}</span>

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../../../../firebase/firebase.init";
+import Loading from "../../../../ui/loading/Loading";
 import SocialAuth from "../social/SocialAuth";
 
 const SignUp = () => {
@@ -29,6 +30,10 @@ const SignUp = () => {
             navigate("/");
         }
     }, [user, navigate]);
+
+    if(loading || updating) {
+        return <Loading />
+    }
 
     const onSubmit = async (data) => {
         const { name, email, password } = data;
@@ -130,11 +135,11 @@ const SignUp = () => {
                             Accept terms and conditions ?
                         </label>
                     </div>
-                    {(loading || updating) && (
+                    {/* {(loading || updating) && (
                         <p className="my-2 text-sm text-gray-500">
                             <span className="font-medium">Please wait ...</span>
                         </p>
-                    )}
+                    )} */}
                     {(error || updateError) && (
                         <p className="my-2 text-sm text-red-500">
                             <span className="font-medium">Error: {error?.code || updateError?.code}</span>

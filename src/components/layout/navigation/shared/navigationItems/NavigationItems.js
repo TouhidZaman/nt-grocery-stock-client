@@ -13,9 +13,17 @@ const NavigationItems = () => {
                 <NavigationItem to={"/"}>Home</NavigationItem>
             </li>
             {user && (
-                <li className="ml-4">
-                    <NavigationItem to={"/add-inventory"}>Add Item</NavigationItem>
-                </li>
+                <>
+                    <li className="ml-4">
+                        <NavigationItem to={"/manage-inventory"}>Manage Items</NavigationItem>
+                    </li>
+                    <li className="ml-4">
+                        <NavigationItem to={"/add-inventory"}>Add Item</NavigationItem>
+                    </li>
+                    <li className="ml-4">
+                        <NavigationItem to={"/my-inventory"}>My Items</NavigationItem>
+                    </li>
+                </>
             )}
             <li className="ml-4">
                 <NavigationItem to={"/blogs"}>Blogs</NavigationItem>

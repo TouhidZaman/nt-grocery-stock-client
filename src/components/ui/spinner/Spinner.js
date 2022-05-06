@@ -1,9 +1,11 @@
 import React from 'react';
+import spinner from '../../../images/spinner-1s-200px.svg'
 
-const Spinner = () => {
+
+const Spinner = ({height}) => {
     return (
-        <div>
-            <h3 className='text-2xl my-24 text-center'>Loading...</h3>
+        <div className=''>
+            <img src={spinner} style={{height: height}} alt="Loading..."/>
         </div>
     );
 };
