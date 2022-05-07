@@ -2,15 +2,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const useInventoryItems = (email) => {
+const useInventoryItems = (email, limitTo) => {
+    /*  Note: Custom hook - useInventoryItems(email, limitTo) :
+         - First parameter is to filter items by email
+         - Second parameter is to limit data
+        Tips: All parameters are optional. if you have none you can put undefined 
+    */
+    
     const [inventoryItems, setInventoryItems] = useState([]);
 
     //Getting all inventory items
     useEffect(() => {
         const loadItems = async () => {
-            let url = `http://localhost:5000/inventory-items${
-                email ? `?addedBy=${email}` : ""
-            }`;
+            let url = `http://localhost:5000/inventory-items?${
+                email ? `addedBy=${email}` : ""
+            }${limitTo ? `&limitTo=${limitTo}` : ""}`;
+
             try {
                 await axios.get(url).then((response) => {
                     const items = response.data;
@@ -21,7 +28,7 @@ const useInventoryItems = (email) => {
             }
         };
         loadItems();
-    }, [email]);
+    }, [email, limitTo]);
 
     //Delete single inventory item handler
     const handleDeleteInventoryItem = async (itemId) => {
