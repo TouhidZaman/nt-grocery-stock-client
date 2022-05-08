@@ -1,0 +1,22 @@
+[
+  {
+    "id": "555623dde2842f516000e98dcb7",
+    "question": "What is the purpose of jwt and how does it work?",
+    "answer": "The purpose of JWT - JSON Web Token is to protect your data from unauthorized access. when user login occurs server gives a jwt token based on user after then that when user wants to perform a operation server requires this token but a random unauthorized user doesn't have this token. thats how your data stays protected"
+  },
+  {
+    "id": "444623dde289b96ec492dc08e34",
+    "question": "Difference between javascript and nodejs?",
+    "answer": "JavaScript is a simple programming language that runs in any browser JavaScript Engine. Whereas Node JS is an interpreter or running environment for a JavaScript programming language that holds many excesses, it requires libraries that can easily be accessed from JavaScript programming for better use."
+  },
+  {
+    "id": "444623dde28f8265119cf0ee94e",
+    "question": "When should you use nodejs and when should you use mongodb?",
+    "answer": "MongoDB and NodeJS are two different technologies. MonogDB is a database system which gives you a chance to efficiently store documents in a database and to perform operations like data updates, or to search documents by some criteria's . NodeJS's responsibility is especially to execute your application."
+  },
+  {
+    "id": "444623dde2842f516000e98dcb7",
+    "question": "Differences between sql and nosql databases?",
+    "answer": "SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. SQL databases are table-based, while NoSQL databases are document, key-value, graph, or wide-column stores. SQL databases are better for multi-row transactions, while NoSQL is better for unstructured data like documents or JSON."
+  }
+]
