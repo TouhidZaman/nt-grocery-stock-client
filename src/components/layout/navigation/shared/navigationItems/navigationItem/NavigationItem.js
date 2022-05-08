@@ -5,7 +5,7 @@ const NavigationItem = ({ children, to, ...props }) => {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
     return (
-        <Link className={match && 'text-blue-500 border-b-2 border-blue-500 pb-5'} to={to} {...props}>
+        <Link className={`border-b md:border-b-0 ${match && 'text-blue-500  border-blue-500'}`} to={to} {...props}>
             {children}
         </Link>
     );

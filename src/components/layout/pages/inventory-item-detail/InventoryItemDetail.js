@@ -20,7 +20,7 @@ const InventoryItemDetail = () => {
     //Getting inventory item using id
     useEffect(() => {
         const loadItems = async () => {
-            let url = `http://localhost:5000/inventory-items/${itemId}`;
+            let url = `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`;
 
             try {
                 await axios.get(url).then((response) => {
@@ -36,7 +36,7 @@ const InventoryItemDetail = () => {
 
     //Updating stock quantity
     const updateQuantity = async (quantity, sold) => {
-        let url = `http://localhost:5000/inventory-items/${itemId}`;
+        let url = `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`;
         try {
             await axios.put(url, { quantity, sold }).then((response) => {
                 if (response.data?.acknowledged) {

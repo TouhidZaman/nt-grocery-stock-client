@@ -11,7 +11,7 @@ const Categories = () => {
     //Getting categories
     useEffect(() => {
         const loadItems = async () => {
-            let url = `http://localhost:5000/categories`;
+            let url = `https://nt-grocery-stock.herokuapp.com/categories`;
 
             try {
                 await axios.get(url).then((response) => {

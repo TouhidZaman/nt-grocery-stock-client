@@ -29,7 +29,7 @@ const AddInventory = () => {
 
         try {
             await axios
-                .post("http://localhost:5000/inventory-items", newInventoryItem)
+                .post("https://nt-grocery-stock.herokuapp.com/inventory-items", newInventoryItem)
                 .then((response) => {
                     // console.log(response.data);
                     setLoading(false);
@@ -46,7 +46,7 @@ const AddInventory = () => {
 
     //getting categories
     useEffect(() => {
-        axios.get("http://localhost:5000/categories").then((response) => {
+        axios.get("https://nt-grocery-stock.herokuapp.com/categories").then((response) => {
             const categories = response.data;
             setCategories(categories);
         });

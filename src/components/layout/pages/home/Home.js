@@ -1,4 +1,5 @@
 import React from "react";
+import Backdrop from "../../../ui/backdrop/Backdrop";
 import Banner from "./banner/Banner";
 import Categories from "./categories/Categories";
 import Contact from "./contact/Contact";
@@ -11,6 +12,7 @@ const Home = () => {
             <DisplayItems />
             <Categories />
             <Contact />
+            <Backdrop />
         </>
     );
 };

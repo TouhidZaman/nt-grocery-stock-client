@@ -14,7 +14,7 @@ const useInventoryItems = (email, limitTo) => {
     //Getting all inventory items
     useEffect(() => {
         const loadItems = async () => {
-            let url = `http://localhost:5000/inventory-items?${
+            let url = `https://nt-grocery-stock.herokuapp.com/inventory-items?${
                 email ? `addedBy=${email}` : ""
             }${limitTo ? `&limitTo=${limitTo}` : ""}`;
 
@@ -35,7 +35,7 @@ const useInventoryItems = (email, limitTo) => {
         const confirm = window.confirm("Are you sure ?");
         if (confirm) {
             await axios
-                .delete(`http://localhost:5000/inventory-items/${itemId}`)
+                .delete(`https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`)
                 .then((response) => {
                     if (response.data?.acknowledged) {
                         toast("Item Deleted successfully!");
