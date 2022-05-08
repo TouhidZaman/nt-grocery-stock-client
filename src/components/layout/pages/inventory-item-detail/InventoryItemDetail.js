@@ -5,10 +5,13 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "../../../ui/loading/Loading";
 
 const InventoryItemDetail = () => {
     const { itemId } = useParams();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+
     const [inventoryItem, setInventoryItem] = useState({});
     const {
         register,
@@ -20,15 +23,18 @@ const InventoryItemDetail = () => {
     //Getting inventory item using id
     useEffect(() => {
         const loadItems = async () => {
+            setLoading(true);
             let url = `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`;
 
             try {
                 await axios.get(url).then((response) => {
                     const data = response.data;
                     setInventoryItem(data);
+                    setLoading(false);
                 });
             } catch (error) {
                 console.log(error.message);
+                setLoading(false);
             }
         };
         loadItems();
@@ -75,6 +81,11 @@ const InventoryItemDetail = () => {
             updateQuantity(updatedQuantity);
         }
     };
+
+    //handling data loading
+    if(loading) {
+        return <Loading />
+    }
     return (
         <div className="w-5/6 md:w-2/3 lg:w-2/3 mx-auto py-8">
             <div className="flex flex-col items-center pb-6">
