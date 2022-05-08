@@ -6,7 +6,7 @@ import ResetPassword from "./components/layout/pages/auth/reset-password/ResetPa
 import SignUp from "./components/layout/pages/auth/sign-up/SignUp";
 import Blogs from "./components/layout/pages/blogs/Blogs";
 import Home from "./components/layout/pages/home/Home";
-import Inventory from "./components/layout/pages/inventory/Inventory";
+import InventoryItemDetail from "./components/layout/pages/inventory-item-detail/InventoryItemDetail";
 import ManageInventory from "./components/layout/pages/manage-inventory/ManageInventory";
 import MyItems from "./components/layout/pages/my-items/MyItems";
 import NotFound from "./components/layout/pages/not-found/NotFound";
@@ -21,10 +21,10 @@ const MyRoutes = () => {
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route
-                path="/inventory/:id"
+                path="/inventory/:itemId"
                 element={
                     <RequireAuth>
-                        <Inventory />
+                        <InventoryItemDetail />
                     </RequireAuth>
                 }
             />

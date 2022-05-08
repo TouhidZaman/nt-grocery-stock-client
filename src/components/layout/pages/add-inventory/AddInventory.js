@@ -29,12 +29,12 @@ const AddInventory = () => {
 
         try {
             await axios
-                .post("http://localhost:5000/inventory-item", newInventoryItem)
+                .post("http://localhost:5000/inventory-items", newInventoryItem)
                 .then((response) => {
                     // console.log(response.data);
                     setLoading(false);
                     if (response.data?.acknowledged) {
-                        toast("Item Added successfully!");
+                        toast.success("Item Added successfully!");
                         reset();
                     }
                 });

@@ -44,7 +44,7 @@ const Home = () => {
                                 <h3 className="ml-3">
                                     Quantity:{" "}
                                     <span className=" text-blue-300 text-xl">
-                                        {inventoryItem.quantity}
+                                    {inventoryItem.quantity ? inventoryItem.quantity : <span className="text-red-300">stock out</span>}
                                     </span>
                                 </h3>
                                 <h3 className="ml-3">

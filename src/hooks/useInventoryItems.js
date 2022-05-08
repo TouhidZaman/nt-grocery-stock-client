@@ -35,7 +35,7 @@ const useInventoryItems = (email, limitTo) => {
         const confirm = window.confirm("Are you sure ?");
         if (confirm) {
             await axios
-                .delete(`http://localhost:5000/inventory-item/${itemId}`)
+                .delete(`http://localhost:5000/inventory-items/${itemId}`)
                 .then((response) => {
                     if (response.data?.acknowledged) {
                         toast("Item Deleted successfully!");
