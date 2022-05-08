@@ -12,10 +12,11 @@ This is a inventory stock / warehouse management project for grocery shop/superm
   - react-router@6
   - firebase-authentication
   - react-firebase-hooks
-  - axios
+  - axios@0.26.1
   - react-hook-form
   - font-awesome-icons
   - tailwind-css
+  - swiper
   - custom-hooks
   - react-toastify
   - vanilla-css
