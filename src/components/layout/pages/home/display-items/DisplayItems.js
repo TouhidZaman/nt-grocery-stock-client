@@ -24,7 +24,7 @@ const DisplayItems = () => {
                         className="flex flex-col items-center rounded-lg border shadow-md md:flex-row md:max-w-xl  border-gray-700 bg-gray-800 hover:bg-gray-700"
                     >
                         <img
-                            className="pt-3 sm:p-2 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                            className="p-3 w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                             src={inventoryItem.imgUrl}
                             alt="Item-img"
                         />
