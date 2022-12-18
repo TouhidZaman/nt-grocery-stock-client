@@ -24,7 +24,7 @@ const InventoryItemDetail = () => {
     useEffect(() => {
         const loadItems = async () => {
             setLoading(true);
-            let url = `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`;
+            let url = `https://nt-grocery-stock-server.vercel.app/inventory-items/${itemId}`;
 
             try {
                 await axios.get(url).then((response) => {
@@ -42,7 +42,7 @@ const InventoryItemDetail = () => {
 
     //Updating stock quantity
     const updateQuantity = async (quantity, sold) => {
-        let url = `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`;
+        let url = `https://nt-grocery-stock-server.vercel.app/inventory-items/${itemId}`;
         try {
             await axios.put(url, { quantity, sold }).then((response) => {
                 if (response.data?.acknowledged) {

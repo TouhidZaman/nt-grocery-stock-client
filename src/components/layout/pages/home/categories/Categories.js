@@ -11,7 +11,7 @@ const Categories = () => {
     //Getting categories
     useEffect(() => {
         const loadItems = async () => {
-            let url = `https://nt-grocery-stock.herokuapp.com/categories`;
+            let url = `https://nt-grocery-stock-server.vercel.app/categories`;
 
             try {
                 await axios.get(url).then((response) => {

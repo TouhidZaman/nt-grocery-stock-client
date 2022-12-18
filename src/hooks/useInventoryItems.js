@@ -16,7 +16,7 @@ const useInventoryItems = (email, limitTo) => {
     useEffect(() => {
         const loadItems = async () => {
             setLoading(true);
-            let url = `https://nt-grocery-stock.herokuapp.com/inventory-items?${
+            let url = `https://nt-grocery-stock-server.vercel.app/inventory-items?${
                 email ? `addedBy=${email}` : ""
             }${limitTo ? `&limitTo=${limitTo}` : ""}`;
 
@@ -42,7 +42,7 @@ const useInventoryItems = (email, limitTo) => {
             try {
                 await axios
                     .delete(
-                        `https://nt-grocery-stock.herokuapp.com/inventory-items/${itemId}`
+                        `https://nt-grocery-stock-server.vercel.app/inventory-items/${itemId}`
                     )
                     .then((response) => {
                         if (response.data?.acknowledged) {
